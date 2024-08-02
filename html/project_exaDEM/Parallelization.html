@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. Parallelization &mdash; ExaDEM &amp; ExaNBody  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Tutorials" href="Tutorial.html" />
+    <link rel="prev" title="10. I/O and Analysis" href="Analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ExaDEM & ExaNBody
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ExaNB Framework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html">1. ExaNBody: Framework for N-Body Simulations on HPC Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#installing-exanb">2. Installing ExaNB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#n-body-background">3. N-Body Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#software-stack-of-exanbody">4. Software stack of ExaNBody</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#performance-and-portability">5. Performance and portability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#algorithm-patterns">6. Algorithm Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#list-of-plugins">7. List of Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-command-lines">8. ExaNBody Command Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#tutorials">9. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-publications">10. ExaNBody Publications:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#example-for-rst-usage-math-code-etc">11. Example for rst usage (math, code etc)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ExDEM Variant</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">1. ExaDEM Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Test_cases.html">3. Test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Polyhedra.html">4. Polyhedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spheres.html">5. Spheres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fields.html">6. Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceField.html">7. Force Field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericalScheme.html">8. Numerical Scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Drivers.html">9. Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analysis.html">10. I/O and Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mpi-parallelization">11.1. MPI Parallelization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#domain-decomposition">11.1.1. Domain Decomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cost-model">11.1.2. Cost Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#thread-parallelization">11.2. Thread Parallelization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpu-support">11.3. GPU Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarks">11.4. Benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rotating-drum-sphere">11.4.1. Rotating Drum (Sphere)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polyhedra-into-a-box">11.4.2. Polyhedra Into A Box</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">12. Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using exaNBody applications on Adastra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/adastra.html">1. Installing ExaNB and Your application on Adastra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/bibliography.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ExaDEM & ExaNBody</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">11. </span>Parallelization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project_exaDEM/Parallelization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parallelization">
+<h1><span class="section-number">11. </span>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this heading"></a></h1>
+<section id="mpi-parallelization">
+<h2><span class="section-number">11.1. </span>MPI Parallelization<a class="headerlink" href="#mpi-parallelization" title="Permalink to this heading"></a></h2>
+<section id="domain-decomposition">
+<h3><span class="section-number">11.1.1. </span>Domain Decomposition<a class="headerlink" href="#domain-decomposition" title="Permalink to this heading"></a></h3>
+</section>
+<section id="cost-model">
+<h3><span class="section-number">11.1.2. </span>Cost Model<a class="headerlink" href="#cost-model" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="thread-parallelization">
+<h2><span class="section-number">11.2. </span>Thread Parallelization<a class="headerlink" href="#thread-parallelization" title="Permalink to this heading"></a></h2>
+</section>
+<section id="gpu-support">
+<h2><span class="section-number">11.3. </span>GPU Support<a class="headerlink" href="#gpu-support" title="Permalink to this heading"></a></h2>
+</section>
+<section id="benchmarks">
+<h2><span class="section-number">11.4. </span>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading"></a></h2>
+<section id="rotating-drum-sphere">
+<h3><span class="section-number">11.4.1. </span>Rotating Drum (Sphere)<a class="headerlink" href="#rotating-drum-sphere" title="Permalink to this heading"></a></h3>
+<p><img alt="bench1-picture" src="../_images/mpi-dem-example-100M-modified.png" />
+<img alt="bench1-picture-mpi" src="../_images/mpi-dem-example-100M-mpi.png" />
+<img alt="bench1-graph1" src="../_images/drum_dem_100M.png" />
+<img alt="bench1-graph2" src="../_images/drum_dem_100M_comp.png" />
+<img alt="bench1-graph3" src="../_images/drum_dem_100M_comp_pourcentage.png" /></p>
+</section>
+<section id="polyhedra-into-a-box">
+<h3><span class="section-number">11.4.2. </span>Polyhedra Into A Box<a class="headerlink" href="#polyhedra-into-a-box" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Analysis.html" class="btn btn-neutral float-left" title="10. I/O and Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Tutorial.html" class="btn btn-neutral float-right" title="12. Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Thierry Carrard, Raphaël Prat, Jean-Philippe Perlat, Paul Lafourcade.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

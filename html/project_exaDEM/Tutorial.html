@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12. Tutorials &mdash; ExaDEM &amp; ExaNBody  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Installing ExaNB and Your application on Adastra" href="../project_exaNBody/adastra.html" />
+    <link rel="prev" title="11. Parallelization" href="Parallelization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ExaDEM & ExaNBody
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ExaNB Framework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html">1. ExaNBody: Framework for N-Body Simulations on HPC Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#installing-exanb">2. Installing ExaNB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#n-body-background">3. N-Body Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#software-stack-of-exanbody">4. Software stack of ExaNBody</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#performance-and-portability">5. Performance and portability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#algorithm-patterns">6. Algorithm Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#list-of-plugins">7. List of Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-command-lines">8. ExaNBody Command Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#tutorials">9. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-publications">10. ExaNBody Publications:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#example-for-rst-usage-math-code-etc">11. Example for rst usage (math, code etc)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ExDEM Variant</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">1. ExaDEM Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Test_cases.html">3. Test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Polyhedra.html">4. Polyhedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spheres.html">5. Spheres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fields.html">6. Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceField.html">7. Force Field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericalScheme.html">8. Numerical Scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Drivers.html">9. Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analysis.html">10. I/O and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parallelization.html">11. Parallelization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#polyhedra-tutorials">12.1. Polyhedra tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-your-rotating-drum-simulation-with-hexapods-and-a-particle-generator">12.1.1. Build Your Rotating Drum Simulation With Hexapods And A Particle Generator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#developers-tutorials">12.2. Developers Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-your-own-mutator-field-operator">12.2.1. Add Your Own mutator_field Operator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using exaNBody applications on Adastra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/adastra.html">1. Installing ExaNB and Your application on Adastra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/bibliography.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ExaDEM & ExaNBody</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12. </span>Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project_exaDEM/Tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials">
+<h1><span class="section-number">12. </span>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading"></a></h1>
+<section id="polyhedra-tutorials">
+<h2><span class="section-number">12.1. </span>Polyhedra tutorials<a class="headerlink" href="#polyhedra-tutorials" title="Permalink to this heading"></a></h2>
+<section id="build-your-rotating-drum-simulation-with-hexapods-and-a-particle-generator">
+<h3><span class="section-number">12.1.1. </span>Build Your Rotating Drum Simulation With Hexapods And A Particle Generator<a class="headerlink" href="#build-your-rotating-drum-simulation-with-hexapods-and-a-particle-generator" title="Permalink to this heading"></a></h3>
+<p>In this section, we will outline the steps to generate a set of hexapods in a rotating drum and then initiate the simulation. The simulation will proceed in three steps:</p>
+<ul class="simple">
+<li><p>The first step involves generating the hexapods within the cylinder. (generator.msp)</p></li>
+<li><p>The second step is to wait for all hexapods to be deposited into the cylinder. (wait.msp)</p></li>
+<li><p>Finally, the last step is to execute the simulation by setting the cylinder in motion. (run.msp)</p></li>
+</ul>
+<p>The input files are available in the ‘tutorial/hexa-rotating-drum’ folder.</p>
+<p>The ingredients for generating the hexapods are:</p>
+<ul class="simple">
+<li><p>defining the polyhedron shape</p></li>
+<li><p>setting up the cylinder</p></li>
+<li><p>determining the contact force between the polyhedra</p></li>
+<li><p>defining a spatial zone for particle generation</p></li>
+<li><p>specifying an appearance frequency</p></li>
+<li><p>initializing the generated polyhedra</p></li>
+</ul>
+<p>The chosen shape file is an hexapods in the input file, as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;
+name<span class="w"> </span>alpha3
+radius<span class="w"> </span><span class="m">0</span>.237770037899799
+preCompDone<span class="w"> </span>y
+nv<span class="w"> </span><span class="m">6</span>
+<span class="m">0</span>.475540075799599<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+-0.475540075799599<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span>.475540075799599<span class="w"> </span><span class="m">0</span>
+<span class="m">0</span><span class="w"> </span>-0.475540075799599<span class="w"> </span><span class="m">0</span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>.475540075799599
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>-0.475540075799599
+ne<span class="w"> </span><span class="m">3</span>
+<span class="m">0</span><span class="w"> </span><span class="m">1</span>
+<span class="m">2</span><span class="w"> </span><span class="m">3</span>
+<span class="m">4</span><span class="w"> </span><span class="m">5</span>
+nf<span class="w"> </span><span class="m">0</span>
+obb.extent<span class="w"> </span><span class="m">0</span>.713310113699398<span class="w"> </span><span class="m">0</span>.713310113699398<span class="w"> </span><span class="m">0</span>.713310113699398
+obb.e1<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+obb.e2<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+obb.e3<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+obb.center<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+volume<span class="w"> </span><span class="m">0</span>.523598775598299
+I/m<span class="w"> </span><span class="m">0</span>.13266<span class="w"> </span><span class="m">0</span>.13266<span class="w"> </span><span class="m">0</span>.13266
+&gt;
+</pre></div>
+</div>
+<p>We add a paraview polydata created for this shape (exaDEM doesn’t display correclty without face as hexapods, otherwise during the init step, a <cite>your_shape</cite>.vtk is written).</p>
+<a class="reference internal image-reference" href="../_images/tuto_alpha3.png"><img alt="../_images/tuto_alpha3.png" src="../_images/tuto_alpha3.png" style="width: 300pt;" /></a>
+<p>For this simulation, we choose to fill an infinite cylinder centered at (10,3.75,10) with a radius of 16. This detection is added during the construction of neighbor lists (<cite>nbh_polyhedron</cite> operator).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">setup_drivers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">add_cylinder</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">     </span><span class="nt">center</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">10</span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">axis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">     </span><span class="nt">angular_velocity</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>setup_drivers</cite> is a default operator integrated in the default execution graph of exaDEM. By default, this operator is set to nop for <cite>no operator</cite>.</p>
+</div>
+<p>We use the Hooke’s law to compute contact force between the polyhedra/polyhedra and cylinder/polyhedra. Gravity is applied everywhere.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">compute_force</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravity_force</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hooke_polyhedron</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">symetric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">     </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> rcut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> dncut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="p p-Indicator">,</span><span class="nt"> kn</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kt</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kr</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> fc</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> mu</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> damp_rate</span><span class="p">:</span><span class="w"> </span><span class="nv">0.999</span><span class="p p-Indicator">}</span>
+<span class="w">     </span><span class="nt">config_driver</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> rcut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> dncut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="p p-Indicator">,</span><span class="nt"> kn</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kt</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kr</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> fc</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> mu</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> damp_rate</span><span class="p">:</span><span class="w"> </span><span class="nv">0.999</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<p>Now, we need to define a spatial zone for particle generation, this zone is the box defined by the inf point = (0,0,19) and sup point (20,7.5,20).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">particle_regions</span><span class="p">:</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">AREA</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">bounds</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">19</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">20</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">7.5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">20</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Now we add a first lattice generator operator to initialize the simulation, note that <cite>init_domain</cite> is set to true. In addition, if you want that the periodic condition (y-axis) fit with your <cite>AREA</cite>, this lattice generator should be correctly filled, i.e, <cite>repeats[Y]</cite> * <cite>y_size[Y]</cite> = <cite>bounds[Y]</cite> = 5 * 1.5 = 7.5 .</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">first_particles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lattice</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">init_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">     </span><span class="nt">structure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SC</span>
+<span class="w">     </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">repeats</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">15</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">15</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AREA</span>
+</pre></div>
+</div>
+<p>The following block consists in created our operator that adds hexapods. Note that <cite>init_domain</cite> is set to false.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">add_particles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lattice</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">init_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">     </span><span class="nt">structure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SC</span>
+<span class="w">     </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">0</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">repeats</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">15</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">15</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AREA</span>
+</pre></div>
+</div>
+<p>Then we need to initialize hexapods in this region (AREA). The default density is <cite>1</cite>, the volume information used to compute the mass is stored in the shape.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">init_new_particles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">density_from_shape</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set_rand_velocity</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AREA</span>
+<span class="w">     </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">     </span><span class="nt">mean</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nv">-10.0</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inertia_from_shape</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">set_quaternion</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AREA</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">radius_from_shape</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AREA</span>
+</pre></div>
+</div>
+<p>Now, we can define our <cite>input_data</cite> operator:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_data</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">read_shape_file</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alpha3.shp</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first_particles</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init_new_particles</span>
+</pre></div>
+</div>
+<p>The following block consists in the overload of <cite>add_generated_particles</cite> operator that is set to <cite>nop</cite> by default. Note that this operator is triggered by the frequency <cite>simulation_generator_frequency: 40000</cite> defined in the global operator, default is <cite>-1</cite>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">add_generated_particles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">add_particles</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init_new_particles</span>
+</pre></div>
+</div>
+<p>Step one is the <cite>generator.msp</cite> file. To run the simulation, use the following command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mpirun -n 2 ./exaDEM generator.msp --omp-num-threads 2</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure that the alpha3.shp file is in the same location as the simulation.</p>
+</div>
+<p>Picture at the middle of the first step:</p>
+<a class="reference internal image-reference" href="../_images/step1-mid.png"><img alt="../_images/step1-mid.png" src="../_images/step1-mid.png" style="width: 600pt;" /></a>
+<p>Picture at the end of the first step:</p>
+<a class="reference internal image-reference" href="../_images/step1-end.png"><img alt="../_images/step1-end.png" src="../_images/step1-end.png" style="width: 600pt;" /></a>
+<p>The step 2 consists in waiting that the deposit is finished from timestep 1,200,000 (12s) to 1,400,000 (14s).</p>
+<p>First, load the snapshot at time step 1,200,000 and disable generation. It’s important not to forget to define the cutoff radius for the hexapods used with the operator <cite>polyhedra_define_radius</cite> for building the Verlet lists</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">input_data</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">read_shape_file</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alpha3.shp</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">read_dump_particle_interaction</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exaDEM_001200000.dump</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">radius_from_shape</span>
+</pre></div>
+</div>
+<p>Disable the hexapod generator:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">simulation_generator_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span>
+</pre></div>
+</div>
+<p>Step two corresponds to the <cite>wait.msp</cite> file. To run this simulation, use the following command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mpirun -n 2 ./exaDEM wait.msp --omp-num-threads 2</span>
+</pre></div>
+</div>
+<p>Picture at the end of the second step, the desposit is stable (i.e. no velocity):</p>
+<a class="reference internal image-reference" href="../_images/step2-end.png"><img alt="../_images/step2-end.png" src="../_images/step2-end.png" style="width: 600pt;" /></a>
+<p>The step 3 consists in running the rotating drum simulation from timestep 1,400,000 (14s) to 5,000,000 (50s).</p>
+<p>Initiate motion of your drum. You can determine the angular velocity using the Froude number and deduce the angular velocity from it. Fr = w^2 * R / g or w = sqrt(Fr * g / R). In our case, we desire a cascading behavior with a Froude number of 0.2, w = sqrt( 0.2 * 9.81 / 16 ) = 0.350178526 ~= 0.35 rad.s-1 .</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">angular_velocity</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="nv">0.35</span><span class="p p-Indicator">,</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>In addition, we display the contact network (normal force) between the hexapods.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">+dump_data_paraview</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dump_contact_network</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> rcut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> dncut</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0 m</span><span class="p p-Indicator">,</span><span class="nt"> kn</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kt</span><span class="p">:</span><span class="w"> </span><span class="nv">10000</span><span class="p p-Indicator">,</span><span class="nt"> kr</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> fc</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> mu</span><span class="p">:</span><span class="w"> </span><span class="nv">0.1</span><span class="p p-Indicator">,</span><span class="nt"> damp_rate</span><span class="p">:</span><span class="w"> </span><span class="nv">0.999</span><span class="p p-Indicator">}</span>
+<span class="w">     </span><span class="nt">basename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hexapods</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, we need to specify Hooke parameters to calculate the contact network, but this option will disappear with future development (hooke parameters factory).</p>
+</div>
+<p>Step three corresponds to the <cite>run.msp</cite> file. To run this simulation, use the following command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mpirun -n 2 ./exaDEM run.msp --omp-num-threads 2</span>
+</pre></div>
+</div>
+<p>This is the final contact network at 50s.</p>
+<a class="reference internal image-reference" href="../_images/step3-net.png"><img alt="../_images/step3-net.png" src="../_images/step3-net.png" style="width: 550pt;" /></a>
+<p>Picture at the end of the third step:</p>
+<a class="reference internal image-reference" href="../_images/step3-end.png"><img alt="../_images/step3-end.png" src="../_images/step3-end.png" style="width: 600pt;" /></a>
+</section>
+</section>
+<section id="developers-tutorials">
+<h2><span class="section-number">12.2. </span>Developers Tutorials<a class="headerlink" href="#developers-tutorials" title="Permalink to this heading"></a></h2>
+<section id="add-your-own-mutator-field-operator">
+<h3><span class="section-number">12.2.1. </span>Add Your Own mutator_field Operator<a class="headerlink" href="#add-your-own-mutator-field-operator" title="Permalink to this heading"></a></h3>
+<p>This is a minimal example to add your own mutator_field operator:</p>
+<ul class="simple">
+<li><p>[1] Set class name: <cite>SetYourFields</cite></p></li>
+<li><p>[2] Set fields: <cite>field::_YOUR_FIELD_1, field::_YOUR_FIELD_2, …, field::_YOUR_FIELD_N</cite></p></li>
+<li><p>[3] Set types: <cite>YOUR_TYPE_1, YOUR_TYPE_Z, … , YOUR_TYPE_N</cite></p></li>
+<li><p>[4] Set field slots: <cite>your_field_1, your_field_2, …, your_field_N</cite></p></li>
+<li><p>[5] Set operator name: <cite>set_your_fields</cite></p></li>
+<li><p>[6] Specify template: <cite>SetYourFields</cite></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;exaDEM/set_fields.h&gt;</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">exaDEM</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">exanb</span><span class="p">;</span>
+<span class="w">   </span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">GridT</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AssertGridHasFields</span><span class="o">&lt;</span><span class="w"> </span><span class="n">GridT</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_1</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_N</span><span class="o">&gt;</span>
+<span class="w">     </span><span class="o">&gt;</span>
+<span class="w">   </span><span class="k">class</span><span class="w"> </span><span class="nc">SetYourFields</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">OperatorNode</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">     </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">YOUR_TYPE_1</span><span class="w"> </span><span class="n">default_field_value_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YOUR_TYPE_1</span><span class="p">();</span>
+<span class="w">         </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">YOUR_TYPE_2</span><span class="w"> </span><span class="n">default_field_value_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YOUR_TYPE_2</span><span class="p">();</span>
+<span class="w">     </span><span class="p">...</span>
+<span class="w">     </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">YOUR_TYPE_N</span><span class="w"> </span><span class="n">default_field_value_N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YOUR_TYPE_N</span><span class="p">();</span>
+<span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="n">ComputeFields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FieldSet</span><span class="o">&lt;</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_1</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">field</span><span class="o">::</span><span class="n">_YOUR_FIELD_N</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">     </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">ComputeFields</span><span class="w"> </span><span class="n">compute_field_set</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">     </span><span class="n">ADD_SLOT</span><span class="p">(</span><span class="w"> </span><span class="n">GridT</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">INPUT_OUTPUT</span><span class="w"> </span><span class="p">);</span>
+<span class="w">     </span><span class="n">ADD_SLOT</span><span class="p">(</span><span class="w"> </span><span class="n">YOUR_TYPE_1</span><span class="p">,</span><span class="w"> </span><span class="n">your_field_1</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">,</span><span class="w"> </span><span class="n">default_radius</span><span class="p">,</span><span class="w"> </span><span class="n">DocString</span><span class="p">{</span><span class="s">&quot;default  value for all particles&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">);</span>
+<span class="w">     </span><span class="n">ADD_SLOT</span><span class="p">(</span><span class="w"> </span><span class="n">YOUR_TYPE_2</span><span class="p">,</span><span class="w"> </span><span class="n">your_field_2</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">,</span><span class="w"> </span><span class="n">default_radius</span><span class="p">,</span><span class="w"> </span><span class="n">DocString</span><span class="p">{</span><span class="s">&quot;default value for all particles&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">);</span>
+<span class="w">     </span><span class="p">...</span>
+<span class="w">     </span><span class="n">ADD_SLOT</span><span class="p">(</span><span class="w"> </span><span class="n">YOUR_TYPE_N</span><span class="p">,</span><span class="w"> </span><span class="n">your_field_N</span><span class="p">,</span><span class="w"> </span><span class="n">INPUT</span><span class="p">,</span><span class="w"> </span><span class="n">default_radius</span><span class="p">,</span><span class="w"> </span><span class="n">DocString</span><span class="p">{</span><span class="s">&quot;default value for all particles&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">     </span><span class="k">public</span><span class="o">:</span>
+
+<span class="w">     </span><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">documentation</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">final</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">       </span><span class="k">return</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">EOF(</span>
+<span class="s">                 This operator sets the ... value(s) for every particles.</span>
+<span class="s">               </span><span class="dl">)EOF</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
+
+<span class="w">     </span><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">final</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">       </span><span class="n">SetFunctor</span><span class="o">&lt;</span><span class="n">YOUR_TYPE_1</span><span class="p">,</span><span class="n">YOUR_TYPE_2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">YOUR_TYPE_N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span><span class="o">*</span><span class="n">your_field_1</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="o">*</span><span class="n">your_field_2</span><span class="p">},</span>
+<span class="w">        </span><span class="p">...</span><span class="w"> </span><span class="p">,</span>
+<span class="w">        </span><span class="p">{</span><span class="o">*</span><span class="n">your_field_N</span><span class="p">}</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">       </span><span class="n">compute_cell_particles</span><span class="p">(</span>
+<span class="w">         </span><span class="o">*</span><span class="n">grid</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="w"> </span><span class="p">,</span>
+<span class="w">         </span><span class="n">compute_field_set</span><span class="w"> </span><span class="p">,</span>
+<span class="w">         </span><span class="n">gpu_execution_context</span><span class="p">()</span><span class="w"> </span><span class="p">,</span>
+<span class="w">         </span><span class="n">gpu_time_account_func</span><span class="p">()</span>
+<span class="w">       </span><span class="p">);</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">   </span><span class="p">};</span>
+<span class="w">   </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">GridT</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">SetYourFieldsTmpl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetYourFields</span><span class="o">&lt;</span><span class="n">GridT</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">   </span><span class="c1">// === register factories ===</span>
+<span class="w">   </span><span class="n">CONSTRUCTOR_FUNCTION</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">     </span><span class="n">OperatorNodeFactory</span><span class="o">::</span><span class="n">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">register_factory</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;set_your_fields&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_grid_variant_operator</span><span class="o">&lt;</span><span class="w"> </span><span class="n">SetYourFieldsTmpl</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Parallelization.html" class="btn btn-neutral float-left" title="11. Parallelization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../project_exaNBody/adastra.html" class="btn btn-neutral float-right" title="1. Installing ExaNB and Your application on Adastra" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Thierry Carrard, Raphaël Prat, Jean-Philippe Perlat, Paul Lafourcade.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

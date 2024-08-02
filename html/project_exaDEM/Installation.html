@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Installation &mdash; ExaDEM &amp; ExaNBody  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Test cases" href="Test_cases.html" />
+    <link rel="prev" title="1. ExaDEM Software" href="Introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ExaDEM & ExaNBody
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ExaNB Framework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html">1. ExaNBody: Framework for N-Body Simulations on HPC Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#installing-exanb">2. Installing ExaNB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#n-body-background">3. N-Body Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#software-stack-of-exanbody">4. Software stack of ExaNBody</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#performance-and-portability">5. Performance and portability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#algorithm-patterns">6. Algorithm Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#list-of-plugins">7. List of Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-command-lines">8. ExaNBody Command Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#tutorials">9. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-publications">10. ExaNBody Publications:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#example-for-rst-usage-math-code-etc">11. Example for rst usage (math, code etc)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ExDEM Variant</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">1. ExaDEM Software</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-with-cmake">2.1. Installation With CMAKE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minimal-requirements">2.1.1. Minimal Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-dependencies">2.1.2. Optional Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exadem-installation">2.1.3. ExaDEM Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-your-simulation">2.1.4. Running your simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-with-spack">2.2. Installation With Spack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-spack">2.2.1. Installing Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-exadem">2.2.2. Installing ExaDEM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Test_cases.html">3. Test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Polyhedra.html">4. Polyhedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spheres.html">5. Spheres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fields.html">6. Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceField.html">7. Force Field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericalScheme.html">8. Numerical Scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Drivers.html">9. Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analysis.html">10. I/O and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parallelization.html">11. Parallelization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">12. Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using exaNBody applications on Adastra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/adastra.html">1. Installing ExaNB and Your application on Adastra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/bibliography.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ExaDEM & ExaNBody</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project_exaDEM/Installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1><span class="section-number">2. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<section id="installation-with-cmake">
+<h2><span class="section-number">2.1. </span>Installation With CMAKE<a class="headerlink" href="#installation-with-cmake" title="Permalink to this heading"></a></h2>
+<section id="minimal-requirements">
+<h3><span class="section-number">2.1.1. </span>Minimal Requirements<a class="headerlink" href="#minimal-requirements" title="Permalink to this heading"></a></h3>
+<p>To proceed with the installation, your system must meet the minimum prerequisites. The first step involves the installation of <code class="docutils literal notranslate"><span class="pre">exaNBody</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Collab4exaNBody/exaNBody.git
+<span class="nb">export</span><span class="w"> </span><span class="nv">exaNBody_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/exaNBody
+</pre></div>
+</div>
+<p>The next step involves the installation of <code class="docutils literal notranslate"><span class="pre">yaml-cpp</span></code>, which can be achieved using either the <code class="docutils literal notranslate"><span class="pre">spack</span></code> package manager or <code class="docutils literal notranslate"><span class="pre">cmake</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>install<span class="w"> </span>yaml-cpp@0.6.3
+spack<span class="w"> </span>load<span class="w"> </span>yaml-cpp@0.6.3
+</pre></div>
+</div>
+</section>
+<section id="optional-dependencies">
+<h3><span class="section-number">2.1.2. </span>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this heading"></a></h3>
+<p>Before proceeding further, you have the option to consider the following dependencies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CUDA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HIP</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MPI</span></code></p></li>
+</ul>
+</section>
+<section id="exadem-installation">
+<h3><span class="section-number">2.1.3. </span>ExaDEM Installation<a class="headerlink" href="#exadem-installation" title="Permalink to this heading"></a></h3>
+<p>To install <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code>, follow these steps:</p>
+<p>Set the exaNBody_DIR environment variable to the installation path. Clone the <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> repository using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Collab4exaNBody/exaDEM.git
+</pre></div>
+</div>
+<p>Create a directory named build-exaDEM and navigate into it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build-exaDEM<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build-exaDEM
+</pre></div>
+</div>
+<p>Run CMake to configure the ExaDEM build, specifying that <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> support should be turned off:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>../exaDEM<span class="w"> </span>-DXNB_BUILD_CUDA<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>Build <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> using the make command with a specified number of parallel jobs (e.g., -j 4 for 4 parallel jobs):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>Build Plugins</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>UpdatePluginDataBase
+</pre></div>
+</div>
+<p>This command will display all plugins and related operators. Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+<span class="w"> </span>exadem_force_fieldPlugin
+<span class="w">  </span>operator<span class="w">    </span>cylinder_wall
+<span class="w">  </span>operator<span class="w">    </span>gravity_force
+<span class="w">  </span>operator<span class="w">    </span>hooke_force
+<span class="w">  </span>operator<span class="w">    </span>rigid_surface
++<span class="w"> </span>exadem_ioPlugin
+<span class="w">  </span>operator<span class="w">    </span>print_simulation_state
+<span class="w">  </span>operator<span class="w">    </span>read_xyz
+<span class="w">  </span>operator<span class="w">    </span>read_dump_particles
+</pre></div>
+</div>
+</section>
+<section id="running-your-simulation">
+<h3><span class="section-number">2.1.4. </span>Running your simulation<a class="headerlink" href="#running-your-simulation" title="Permalink to this heading"></a></h3>
+<p>Now that you have installed the <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> and <code class="docutils literal notranslate"><span class="pre">exaNBody</span></code> packages, you can create your simulation file in <code class="docutils literal notranslate"><span class="pre">YAML</span></code> format (refer to the ‘example’ folder or the documentation for each operator). Once this file is constructed, you can initiate your simulation using the following instructions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">N_OMP</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">N_MPI</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$N_OMP</span>
+mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$N_MPI</span><span class="w"> </span>./exaDEM<span class="w"> </span>test-case.msp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installation-with-spack">
+<h2><span class="section-number">2.2. </span>Installation With Spack<a class="headerlink" href="#installation-with-spack" title="Permalink to this heading"></a></h2>
+<p>Installation with <code class="docutils literal notranslate"><span class="pre">spack</span></code> is preferable for people who don’t want to develop in <code class="docutils literal notranslate"><span class="pre">exaDEM</span></code>. Only stable versions are added when you install <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> with <code class="docutils literal notranslate"><span class="pre">Spack</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The main of <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> will never be directly accessible via this installation method.</p>
+</div>
+<section id="installing-spack">
+<h3><span class="section-number">2.2.1. </span>Installing Spack<a class="headerlink" href="#installing-spack" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
+<span class="nb">export</span><span class="w"> </span><span class="nv">SPACK_ROOT</span><span class="o">=</span><span class="nv">$PWD</span>/spack
+<span class="nb">source</span><span class="w"> </span><span class="si">${</span><span class="nv">SPACK_ROOT</span><span class="si">}</span>/share/spack/setup-env.sh
+</pre></div>
+</div>
+</section>
+<section id="installing-exadem">
+<h3><span class="section-number">2.2.2. </span>Installing ExaDEM<a class="headerlink" href="#installing-exadem" title="Permalink to this heading"></a></h3>
+<p>First get the <code class="docutils literal notranslate"><span class="pre">spack</span></code> repository in exaDEM directory and it to spack. It contains two packages: <code class="docutils literal notranslate"><span class="pre">exanbody</span></code> and <code class="docutils literal notranslate"><span class="pre">exadem</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Collab4exaNBody/exaDEM.git
+<span class="nb">cd</span><span class="w"> </span>exaDEM
+spack<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>spack_repo
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Current variante(s):</p>
+<ul class="simple">
+<li><p>+cuda: Add GPU support</p></li>
+</ul>
+</div>
+<p>Second install <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> (this command will install <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, <code class="docutils literal notranslate"><span class="pre">yaml-cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">exanbody</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>install<span class="w"> </span>exadem
+</pre></div>
+</div>
+<p>Finally the <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> executable has been created in the spack directory. You can run your simulation with your input file (<em>your_input_file.msp</em>) such as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>load<span class="w"> </span>exadem
+exaDEM<span class="w"> </span>your_input_file.msp
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Introduction.html" class="btn btn-neutral float-left" title="1. ExaDEM Software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Test_cases.html" class="btn btn-neutral float-right" title="3. Test cases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Thierry Carrard, Raphaël Prat, Jean-Philippe Perlat, Paul Lafourcade.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
