@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. ExaDEM Software &mdash; ExaDEM &amp; ExaNBody  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Installation" href="Installation.html" />
+    <link rel="prev" title="1. ExaNBody: Framework for N-Body Simulations on HPC Platforms" href="../project_exaNBody/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ExaDEM & ExaNBody
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">ExaNB Framework</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html">1. ExaNBody: Framework for N-Body Simulations on HPC Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#installing-exanb">2. Installing ExaNB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#n-body-background">3. N-Body Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#software-stack-of-exanbody">4. Software stack of ExaNBody</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#performance-and-portability">5. Performance and portability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#algorithm-patterns">6. Algorithm Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#list-of-plugins">7. List of Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-command-lines">8. ExaNBody Command Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#tutorials">9. Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#exanbody-publications">10. ExaNBody Publications:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/index.html#example-for-rst-usage-math-code-etc">11. Example for rst usage (math, code etc)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ExDEM Variant</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. ExaDEM Software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-exadem">1.1. Overview of ExaDEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exadem-capabilities">1.2. ExaDEM Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-execution-graph-with-exadem">1.3. Default Execution Graph With ExaDEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-note">1.4. Release Note</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#release-notes-for-version-1-0-1-06-24">1.4.1. Release Notes for Version 1.0.1 (06/24):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Test_cases.html">3. Test cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Polyhedra.html">4. Polyhedron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spheres.html">5. Spheres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fields.html">6. Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ForceField.html">7. Force Field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericalScheme.html">8. Numerical Scheme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Drivers.html">9. Drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analysis.html">10. I/O and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parallelization.html">11. Parallelization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">12. Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using exaNBody applications on Adastra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/adastra.html">1. Installing ExaNB and Your application on Adastra</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Bibliography</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../project_exaNBody/bibliography.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ExaDEM & ExaNBody</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>ExaDEM Software</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/project_exaDEM/Introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <a class="reference internal image-reference" href="../_images/exaDEMlogo2.png"><img alt="../_images/exaDEMlogo2.png" class="align-center" src="../_images/exaDEMlogo2.png" style="width: 418.0px; height: 252.0px;" /></a>
+<section id="exadem-software">
+<h1><span class="section-number">1. </span>ExaDEM Software<a class="headerlink" href="#exadem-software" title="Permalink to this heading"></a></h1>
+<section id="overview-of-exadem">
+<h2><span class="section-number">1.1. </span>Overview of ExaDEM<a class="headerlink" href="#overview-of-exadem" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> is a software solution in the field of computational simulations. It’s a Discrete Element Method (<code class="docutils literal notranslate"><span class="pre">DEM</span></code>) code developed within the <code class="docutils literal notranslate"><span class="pre">exaNBody</span> <span class="pre">framework</span></code>. This framework provides the basis for DEM functionalities and performance optimizations. A notable aspect of <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> is its hybrid parallelization approach, which combines the use of <code class="docutils literal notranslate"><span class="pre">MPI</span></code> (Message Passing Interface) and Threads (<code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>). This combination aims to enhance computation times for simulations, making them more efficient and manageable.</p>
+<p>Additionally, <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> offers compatibility with <code class="docutils literal notranslate"><span class="pre">MPI``+``GPUs</span></code>, using the <code class="docutils literal notranslate"><span class="pre">CUDA</span></code> programming model (Onika layer). This feature provides the option to leverage <code class="docutils literal notranslate"><span class="pre">GPU</span></code> processing power for potential performance gains in simulations. Written in <code class="docutils literal notranslate"><span class="pre">C++17</span></code>, <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> is built on a contemporary codebase. It aims to provide researchers and engineers with a tool for adressing <code class="docutils literal notranslate"><span class="pre">DEM</span></code> simulations.</p>
+</section>
+<section id="exadem-capabilities">
+<h2><span class="section-number">1.2. </span>ExaDEM Capabilities<a class="headerlink" href="#exadem-capabilities" title="Permalink to this heading"></a></h2>
+<p>The following table provides a glossary of features supported by <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code>, categorized by their computational platform (<code class="docutils literal notranslate"><span class="pre">CPU</span></code> or <code class="docutils literal notranslate"><span class="pre">GPU</span></code>) and particle type (Sphere or Polyhedron). Please note that this information is indicative and may be subject to change based on updates or modifications to the <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> framework.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Glossary Of Features</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Features</p></th>
+<th class="head"><p>Sphere(CPU)</p></th>
+<th class="head"><p>Sphere(GPU)</p></th>
+<th class="head"><p>Polyhedron(CPU)</p></th>
+<th class="head"><p>Polyhedron(GPU)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Field Set Plugin</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>I/O Files</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Paraview Files</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>Particle Migration (MPI)</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Load Balancing (RCB)</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-odd"><td><p>Numerical Scheme Plugin</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-even"><td><p>Regions</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Particles Generator</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>Hooke Law</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gravity Force</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-even"><td><p>Quadratic Drag Force</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Driver Cylinder</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-even"><td><p>Driver Wall/Surface</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Driver type Ball/Sphere</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-even"><td><p>Driver type STL Mesh</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+<td><p>YES</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contact Network File</p></td>
+<td><p>NO</p></td>
+<td><p>X</p></td>
+<td><p>YES</p></td>
+<td><p>X</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With version 1.0.1, <code class="docutils literal notranslate"><span class="pre">exaDEM</span></code> can now run <code class="docutils literal notranslate"><span class="pre">GPU</span></code> calculations with polyhedra. Nevertheless, optimizations are required to achieve good performance. These are currently being implemented.</p>
+</div>
+</section>
+<section id="default-execution-graph-with-exadem">
+<h2><span class="section-number">1.3. </span>Default Execution Graph With ExaDEM<a class="headerlink" href="#default-execution-graph-with-exadem" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> is based on the operator execution system implemented by the <code class="docutils literal notranslate"><span class="pre">ExaNBody</span></code> framework. In particular, this allows us to define a set of default operators for <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> to run a <code class="docutils literal notranslate"><span class="pre">DEM</span></code> simulation following a default Verlet Vitesse integration scheme. <code class="docutils literal notranslate"><span class="pre">ExaDEM</span></code> offers two variants, depending on whether you want to simulate spherical particles only, or spheropolyhedron particles. To choose between these two variants, you’ll need to include either <em>config_spheres.msp</em> or <em>config_polyhedra.msp</em> at the beginning of your input file. If neither is defined, the simulation will not work. Including these files allows you to override certain operators left at <em>nop</em> (for no operation). The graph below shows the sequence of <code class="docutils literal notranslate"><span class="pre">exaDEM</span></code>’s main operators.</p>
+<a class="reference internal image-reference" href="../_images/ExaDEM-DAG.png"><img alt="../_images/ExaDEM-DAG.png" class="align-center" src="../_images/ExaDEM-DAG.png" style="width: 945.0px; height: 3024.0px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Violet: These operators are only called with the polyhedra variant.</p></li>
+<li><p>Blue: Numerical time scheme operators.</p></li>
+</ul>
+</div>
+</section>
+<section id="release-note">
+<h2><span class="section-number">1.4. </span>Release Note<a class="headerlink" href="#release-note" title="Permalink to this heading"></a></h2>
+<section id="release-notes-for-version-1-0-1-06-24">
+<h3><span class="section-number">1.4.1. </span>Release Notes for Version 1.0.1 (06/24):<a class="headerlink" href="#release-notes-for-version-1-0-1-06-24" title="Permalink to this heading"></a></h3>
+<p>New Features:</p>
+<ul class="simple">
+<li><p>Classifier for Interactions</p>
+<ul>
+<li><p>Introduced a classifier to categorize interactions and enhancing data organization.</p></li>
+<li><p>Provides improved management and processing of interaction data.</p></li>
+</ul>
+</li>
+<li><p>Mirror Boundary Conditions from ExaNBody Are Availables</p>
+<ul>
+<li><p>Mirror boundary conditions to simulate reflections at domain boundaries.</p></li>
+</ul>
+</li>
+<li><p>GPU Version for Polyhedra</p>
+<ul>
+<li><p>Added GPU-accelerated support for polyhedra computations.</p></li>
+</ul>
+</li>
+</ul>
+<p>Changes and Enhancements:</p>
+<ul class="simple">
+<li><p>Unified Drivers for Spheres and Polyhedra</p>
+<ul>
+<li><p>Integrated a unified driver system for both spherical and polyhedral objects.</p></li>
+<li><p>Simplifies driver management and enhances code reusability.</p></li>
+</ul>
+</li>
+</ul>
+<p>Removed Features:</p>
+<ul class="simple">
+<li><p>Meshset and Friction Plugins</p>
+<ul>
+<li><p>Removed deprecated meshset and friction plugins.</p></li>
+<li><p>Reduces complexity.</p></li>
+</ul>
+</li>
+</ul>
+<p>Added Examples:</p>
+<ul class="simple">
+<li><p>New Example: Funnel</p></li>
+<li><p>Mirror Boundary Conditions</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../project_exaNBody/index.html" class="btn btn-neutral float-left" title="1. ExaNBody: Framework for N-Body Simulations on HPC Platforms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Installation.html" class="btn btn-neutral float-right" title="2. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Thierry Carrard, Raphaël Prat, Jean-Philippe Perlat, Paul Lafourcade.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
